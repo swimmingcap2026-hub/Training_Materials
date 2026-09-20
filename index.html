@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCREEN DNS SU-3200 WET — 訓練系統 / Training System</title>
+<meta name="description" content="Interactive 3D training courseware for a SCREEN DNS SU-3200 style single-wafer wet cleaning system: exploded view, cross section, x-ray enclosure, per-chamber process flow, zh/en/ja.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231f6feb'/><circle cx='16' cy='16' r='7' fill='none' stroke='white' stroke-width='2.4'/><circle cx='16' cy='16' r='2' fill='white'/></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./assets/vendor/three.module.min.js",
+    "three/addons/": "./assets/vendor/addons/"
+  }
+}
+</script>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <div class="brand-mark">SU<br>3200</div>
+    <div class="brand-text">
+      <h1 data-i18n="app.title">SCREEN DNS SU-3200 WET 單片式清洗機台訓練系統</h1>
+      <p data-i18n="app.subtitle">半導體濕製程設備 · 3D 互動教材</p>
+    </div>
+  </div>
+  <div class="header-spacer"></div>
+  <div class="lang-switch" id="langSwitch"></div>
+</header>
+
+<nav class="tabbar" id="tabbar">
+  <button data-tab="overview" class="active" data-i18n="tab.overview">整機總覽</button>
+  <button data-tab="chamber" data-i18n="tab.chamber">腔室細部</button>
+  <button data-tab="flow" data-i18n="tab.flow">製程流程</button>
+  <button data-tab="quiz" data-i18n="tab.quiz">學習檢核</button>
+</nav>
+
+<main>
+  <!-- ================= TAB 1: full tool ================= -->
+  <section class="tabpanel active" id="tab-overview">
+    <div class="workspace">
+      <aside class="panel-left">
+        <div class="panel-head">
+          <h2 data-i18n="list.title">零件清單</h2>
+          <input class="search-box" id="searchTool" type="search" data-i18n-ph="list.search" placeholder="搜尋零件…">
+          <p class="panel-hint" data-i18n="list.hint">點擊零件名稱或 3D 模型可查看說明</p>
+        </div>
+        <div class="part-groups" id="listTool"></div>
+      </aside>
+
+      <div class="viewport" id="viewTool">
+        <div class="loading" id="loadTool"><div><div class="spinner"></div><span data-i18n="loading">載入 3D 模型中…</span></div></div>
+        <div class="toolbar">
+          <div class="tool-group">
+            <label class="grp-label" data-i18n="view.title">檢視模式</label>
+            <button class="tool-btn active" data-mode="solid" data-i18n="view.solid">實體</button>
+            <button class="tool-btn mode-xray" data-mode="xray"><span class="ico">◍</span><span data-i18n="view.xray">外殼透視</span></button>
+            <button class="tool-btn mode-section" data-mode="section"><span class="ico">◧</span><span data-i18n="view.section">剖面圖</span></button>
+            <button class="tool-btn mode-explode" data-mode="explode"><span class="ico">✳</span><span data-i18n="view.explode">爆炸圖</span></button>
+          </div>
+          <div class="tool-group">
+            <button class="tool-btn" data-act="labels"><span class="ico">🏷</span><span data-i18n="view.labels">顯示標籤</span></button>
+            <button class="tool-btn" data-act="autorotate"><span class="ico">⟳</span><span data-i18n="view.autorotate">自動旋轉</span></button>
+            <button class="tool-btn" data-act="reset"><span class="ico">⌂</span><span data-i18n="view.reset">重設視角</span></button>
+          </div>
+        </div>
+
+        <div class="legend">
+          <h4 data-i18n="legend.title">顏色圖例</h4>
+          <div><i style="background:#00b8a9"></i><span data-i18n="group.process">製程單元</span></div>
+          <div><i style="background:#f2c94c"></i><span data-i18n="group.transfer">搬送系統</span></div>
+          <div><i style="background:#2d9cdb"></i><span data-i18n="group.fluid">流體 / 藥液系統</span></div>
+          <div><i style="background:#9aa5b1"></i><span data-i18n="group.utility">廠務 / 排氣系統</span></div>
+          <div><i style="background:#34495e"></i><span data-i18n="group.control">控制與安全</span></div>
+        </div>
+
+        <div class="slider-group" id="slidersTool">
+          <div class="slider-row" data-for="explode">
+            <label data-i18n="ctrl.explodeAmount">爆炸距離</label>
+            <input type="range" min="0" max="100" value="0" data-slider="explode">
+            <span class="val">0%</span>
+          </div>
+          <div class="slider-row" data-for="xray">
+            <label data-i18n="ctrl.opacity">外殼透明度</label>
+            <input type="range" min="2" max="60" value="14" data-slider="opacity">
+            <span class="val">14%</span>
+          </div>
+          <div class="slider-row" data-for="section">
+            <label data-i18n="ctrl.sectionAxis">剖切軸向</label>
+            <div class="seg" data-seg="axis">
+              <button data-axis="x" class="active">X</button>
+              <button data-axis="y">Y</button>
+              <button data-axis="z">Z</button>
+            </div>
+            <button class="tool-btn" data-act="flip" data-i18n="ctrl.sectionFlip">反向剖切</button>
+          </div>
+          <div class="slider-row" data-for="section">
+            <label data-i18n="ctrl.sectionPos">剖切位置</label>
+            <input type="range" min="-100" max="100" value="0" data-slider="section">
+            <span class="val">0</span>
+          </div>
+        </div>
+
+        <div class="view-presets">
+          <button class="tool-btn" data-view="iso" data-i18n="view.iso">立體</button>
+          <button class="tool-btn" data-view="front" data-i18n="view.front">前視</button>
+          <button class="tool-btn" data-view="side" data-i18n="view.side">側視</button>
+          <button class="tool-btn" data-view="top" data-i18n="view.top">俯視</button>
+        </div>
+      </div>
+
+      <aside class="panel-right">
+        <div class="panel-head"><h2 data-i18n="info.select">請點選一個零件</h2></div>
+        <div class="info-body" id="infoTool"></div>
+        <p class="disclaimer" data-i18n="app.disclaimer"></p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= TAB 2: single chamber ================= -->
+  <section class="tabpanel" id="tab-chamber">
+    <div class="workspace">
+      <aside class="panel-left">
+        <div class="panel-head">
+          <h2 data-i18n="chamber.title">製程腔室細部</h2>
+          <input class="search-box" id="searchCh" type="search" data-i18n-ph="list.search" placeholder="搜尋零件…">
+          <p class="panel-hint" data-i18n="chamber.hint"></p>
+        </div>
+        <div class="part-groups" id="listCh"></div>
+      </aside>
+
+      <div class="viewport" id="viewCh">
+        <div class="loading" id="loadCh"><div><div class="spinner"></div><span data-i18n="loading">載入 3D 模型中…</span></div></div>
+        <div class="toolbar">
+          <div class="tool-group">
+            <label class="grp-label" data-i18n="view.title">檢視模式</label>
+            <button class="tool-btn active" data-mode="solid" data-i18n="view.solid">實體</button>
+            <button class="tool-btn mode-xray" data-mode="xray"><span class="ico">◍</span><span data-i18n="view.xray">外殼透視</span></button>
+            <button class="tool-btn mode-section" data-mode="section"><span class="ico">◧</span><span data-i18n="view.section">剖面圖</span></button>
+            <button class="tool-btn mode-explode" data-mode="explode"><span class="ico">✳</span><span data-i18n="view.explode">爆炸圖</span></button>
+          </div>
+          <div class="tool-group">
+            <button class="tool-btn" data-act="labels"><span class="ico">🏷</span><span data-i18n="view.labels">顯示標籤</span></button>
+            <button class="tool-btn" data-act="autorotate"><span class="ico">⟳</span><span data-i18n="view.autorotate">自動旋轉</span></button>
+            <button class="tool-btn" data-act="reset"><span class="ico">⌂</span><span data-i18n="view.reset">重設視角</span></button>
+          </div>
+        </div>
+
+        <div class="slider-group" id="slidersCh">
+          <div class="slider-row" data-for="explode">
+            <label data-i18n="ctrl.explodeAmount">爆炸距離</label>
+            <input type="range" min="0" max="100" value="0" data-slider="explode">
+            <span class="val">0%</span>
+          </div>
+          <div class="slider-row" data-for="xray">
+            <label data-i18n="ctrl.opacity">外殼透明度</label>
+            <input type="range" min="2" max="60" value="14" data-slider="opacity">
+            <span class="val">14%</span>
+          </div>
+          <div class="slider-row" data-for="section">
+            <label data-i18n="ctrl.sectionAxis">剖切軸向</label>
+            <div class="seg" data-seg="axis">
+              <button data-axis="x" class="active">X</button>
+              <button data-axis="y">Y</button>
+              <button data-axis="z">Z</button>
+            </div>
+            <button class="tool-btn" data-act="flip" data-i18n="ctrl.sectionFlip">反向剖切</button>
+          </div>
+          <div class="slider-row" data-for="section">
+            <label data-i18n="ctrl.sectionPos">剖切位置</label>
+            <input type="range" min="-100" max="100" value="0" data-slider="section">
+            <span class="val">0</span>
+          </div>
+        </div>
+
+        <div class="proc-bar">
+          <div class="proc-top">
+            <button class="proc-btn" id="procPlay"><span class="ico">▶</span><span data-i18n="chamber.play">播放製程流程</span></button>
+            <button class="proc-btn ghost" id="procPrev" data-i18n="chamber.prev">上一步</button>
+            <button class="proc-btn ghost" id="procNext" data-i18n="chamber.next">下一步</button>
+            <div class="proc-readout">
+              <span><span data-i18n="chamber.rpm">轉速</span>: <b id="rdRpm">0</b> rpm</span>
+              <span><span data-i18n="chamber.chem">供液</span>: <b id="rdChem">—</b></span>
+            </div>
+          </div>
+          <div class="proc-steps" id="procSteps"></div>
+          <div class="proc-progress"><i id="procProgress"></i></div>
+        </div>
+      </div>
+
+      <aside class="panel-right">
+        <div class="panel-head"><h2 data-i18n="info.select">請點選一個零件</h2></div>
+        <div class="info-body" id="infoCh"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= TAB 3: process flow ================= -->
+  <section class="tabpanel" id="tab-flow">
+    <div class="doc-wrap"><div class="doc">
+      <h2 data-i18n="flow.title">製程流程 (Recipe Sequence)</h2>
+      <p class="sub" data-i18n="flow.subtitle">典型 SC-1 / SC-2 / DHF 前清洗配方</p>
+      <div id="flowList"></div>
+      <p class="disclaimer" data-i18n="app.disclaimer" style="margin-left:0;margin-right:0"></p>
+    </div></div>
+  </section>
+
+  <!-- ================= TAB 4: quiz ================= -->
+  <section class="tabpanel" id="tab-quiz">
+    <div class="doc-wrap"><div class="doc">
+      <h2 data-i18n="quiz.title">學習檢核</h2>
+      <p class="sub" data-i18n="quiz.hint"></p>
+      <div id="quizList"></div>
+      <div class="quiz-actions">
+        <button class="proc-btn" id="quizCheck" data-i18n="quiz.check">對答案</button>
+        <button class="proc-btn ghost" id="quizReset" data-i18n="quiz.reset">重做</button>
+        <span class="quiz-score" id="quizScore"></span>
+      </div>
+    </div></div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
