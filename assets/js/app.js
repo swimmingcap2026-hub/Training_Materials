@@ -219,7 +219,7 @@ function toolbarFor(key, viewportSel, sliderSel) {
 
 function initToolViewer() {
   if (S.tool.viewer) return;
-  const v = new Viewer($('#viewTool'), {
+  const v = new Viewer($('#canvasTool'), {
     camera: [4.0, 2.9, 4.9], target: [0, 1.05, 0], gridSize: 16, gridDiv: 32,
     explodeScale: 1.8, centerY: 1.1,
     labelText: id => (byId.get(id) ? byId.get(id)[lang].name : id),
@@ -237,7 +237,7 @@ const P = { playing: false, idx: 0, t: 0, rpm: 0, angle: 0, cupY: 0, armAngle: {
 function initChamberViewer() {
   if (S.ch.viewer) return;
   const built = buildChamber();
-  const v = new Viewer($('#viewCh'), {
+  const v = new Viewer($('#canvasCh'), {
     camera: [1.75, 2.35, 2.15], target: [0, 0.66, 0], gridSize: 4, gridDiv: 16,
     explodeScale: 1.3, centerY: 0.7,
     active: document.querySelector('#tab-chamber').classList.contains('active'),

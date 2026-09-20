@@ -133,6 +133,7 @@ main { flex: 1; min-height: 0; position: relative; }
 
 /* ---------- viewport ---------- */
 .viewport { position: relative; background: #fff; overflow: hidden; }
+.canvas-host { position: absolute; inset: 0; }
 .viewport canvas { display: block; }
 .label-layer { position: absolute; inset: 0; pointer-events: none; }
 .part-label {
@@ -333,11 +334,26 @@ main { flex: 1; min-height: 0; position: relative; }
   main { position: static; }
   .tabpanel { position: static; display: none; }
   .tabpanel.active { display: block; }
-  .workspace { grid-template-columns: 1fr; height: auto; }
-  .panel-left, .panel-right { border: 0; border-top: 1px solid var(--line); max-height: 420px; }
-  .viewport { height: 62vh; min-height: 380px; }
-  .toolbar { position: static; padding: 8px; background: var(--bg-soft); }
+  /* 3D view first, then the description, then the component list */
+  .workspace { grid-template-columns: 1fr; height: auto; display: flex; flex-direction: column; }
+  .viewport { order: 1; height: auto; display: flex; flex-direction: column; }
+  .canvas-host { position: relative; inset: auto; order: 2; height: 56vh; min-height: 330px; }
+  .toolbar { order: 1; }
+  .slider-group.show { order: 3; }
+  .view-presets { order: 4; }
+  .proc-bar { order: 5; }
+  .panel-right { order: 2; border: 0; border-top: 1px solid var(--line); }
+  .panel-left { order: 3; border: 0; border-top: 1px solid var(--line); max-height: 340px; }
+  .toolbar { position: static; padding: 8px; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
   .tool-group { background: #fff; }
-  .slider-group, .view-presets, .proc-bar { position: static; margin: 8px; box-shadow: none; }
-  .proc-bar { margin: 0 8px 8px; }
+  .slider-group, .view-presets { position: static; margin: 8px; box-shadow: none; }
+  .proc-bar { position: static; margin: 0; border-radius: 0; box-shadow: none; border-left: 0; border-right: 0; }
+  .brand-text h1 { font-size: 13px; }
+  .brand-text p { display: none; }
+  .lang-switch button { padding: 6px 9px; white-space: nowrap; }
+  .app-header { padding: 8px 12px; gap: 8px; }
+  .info-body { padding: 12px; }
+  .doc { padding: 18px 14px 40px; }
+  .flow-card { grid-template-columns: 40px 1fr; gap: 12px; padding: 14px; }
+  .flow-idx { width: 36px; height: 36px; font-size: 15px; }
 }
