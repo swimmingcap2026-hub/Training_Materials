@@ -41,14 +41,24 @@ python3 -m http.server 8000
 
 ## 發佈到 GitHub Pages / Publishing
 
-倉庫內含 `.github/workflows/pages.yml`。在 GitHub 上：
+倉庫內含 `.github/workflows/pages.yml`，推送到本分支或 `main` 時會自動部署。
 
-1. **Settings → Pages → Build and deployment → Source** 選擇 **GitHub Actions**
-2. 推送本分支後，workflow 會自動部署，網址為
-   `https://<owner>.github.io/<repo>/`
+**但 Pages 必須先由倉庫擁有者手動啟用一次**（GitHub Actions 的預設 token 沒有
+建立 Pages 站台的權限，自動啟用會得到 `Resource not accessible by integration`）：
 
-（若偏好不使用 Actions，也可在 Pages 設定中直接選 **Deploy from a branch**，
-分支選本分支、資料夾選 `/ (root)`。）
+1. 開啟 **Settings → Pages**
+2. **Build and deployment → Source** 選 **GitHub Actions**
+3. 回到 **Actions** 分頁，重跑 `Deploy training site to GitHub Pages`
+   （或再推一次任何 commit）
+
+完成後網址為 `https://<owner>.github.io/<repo>/`。
+
+若偏好不使用 Actions：Settings → Pages → Source 選 **Deploy from a branch**，
+分支選本分支、資料夾選 `/ (root)` 即可。
+
+> Pages must be enabled once by the repository owner (Settings → Pages →
+> Source: GitHub Actions); the workflow token cannot create the Pages site
+> itself. After that the included workflow deploys on every push.
 
 ## 目錄結構 / Structure
 
