@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASML EUV 曝光機 · 3D 互動教材</title>
+<meta name="description" content="ASML EUV (NXE/EXE) 極紫外光曝光機的 3D 互動教材：剖面圖、爆炸圖、51 個部件解說與 14 段製程流程演示。">
+<meta property="og:title" content="ASML EUV 曝光機 · 3D 互動教材">
+<meta property="og:description" content="剖面圖、爆炸圖、51 個部件解說與 14 段製程流程演示，可完全離線使用。">
+<style>
+:root{
+  --bg:#070a10; --card:rgba(16,22,32,.86); --line:#233043; --line2:#2e3d52;
+  --tx:#e6edf6; --tx2:#9db0c8; --tx3:#66788f; --acc:#4dd0e1; --acc2:#ffd93d; --warn:#ff8a3d;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; background:var(--bg); color:var(--tx);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(900px 500px at 78% -8%, rgba(77,208,225,.14), transparent 62%),
+    radial-gradient(700px 420px at 4% 12%, rgba(255,138,61,.09), transparent 60%);
+}
+.wrap{max-width:900px;margin:0 auto;padding:56px 22px 72px}
+.eyebrow{font-size:11.5px;letter-spacing:2.4px;color:var(--acc);text-transform:uppercase;font-weight:700;margin-bottom:12px}
+h1{font-size:clamp(27px,5vw,42px);line-height:1.25;margin:0 0 10px;letter-spacing:-.4px}
+.sub{color:var(--tx2);font-size:clamp(14px,2.2vw,16px);max-width:640px;margin:0 0 30px}
+.cta{display:flex;gap:11px;flex-wrap:wrap;margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:11px;
+  text-decoration:none;font-weight:700;font-size:15px;transition:.16s;border:1px solid transparent}
+.btn.primary{background:var(--acc);color:#04222a;box-shadow:0 8px 26px rgba(77,208,225,.26)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(77,208,225,.36)}
+.btn.ghost{border-color:var(--line2);color:var(--tx2);background:rgba(16,22,32,.7)}
+.btn.ghost:hover{border-color:var(--acc);color:var(--tx)}
+.tiny{font-size:12px;color:var(--tx3);margin:0 0 46px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:13px;margin-bottom:46px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 19px}
+.card h3{margin:0 0 7px;font-size:14.5px;display:flex;align-items:center;gap:8px}
+.card p{margin:0;font-size:13px;color:var(--tx2)}
+.ico{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:14px;flex:0 0 auto}
+h2{font-size:12px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;margin:0 0 14px;font-weight:700}
+.sec{margin-bottom:42px}
+.cov{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:9px}
+.cov div{background:rgba(16,22,32,.55);border:1px solid var(--line);border-left:2px solid var(--acc);
+  border-radius:0 8px 8px 0;padding:10px 14px;font-size:12.5px;color:var(--tx2)}
+.cov b{color:var(--tx);display:block;font-size:13px;margin-bottom:2px}
+.keys{display:flex;flex-wrap:wrap;gap:7px;font-size:12.5px;color:var(--tx2);align-items:center}
+kbd{display:inline-block;min-width:22px;text-align:center;padding:2px 8px;border:1px solid var(--line2);
+  border-bottom-width:2px;border-radius:5px;font-size:11.5px;background:#0d131c;color:var(--tx);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.note{border-left:2px solid var(--warn);background:rgba(255,138,61,.07);padding:14px 17px;
+  border-radius:0 9px 9px 0;font-size:12.5px;color:#e4d3c2}
+.note b{color:var(--warn)}
+.note p{margin:0 0 7px}.note p:last-child{margin:0}
+footer{border-top:1px solid var(--line);padding-top:20px;font-size:12px;color:var(--tx3)}
+footer a{color:var(--tx2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Extreme Ultraviolet Lithography · 13.5 nm</div>
+  <h1>ASML EUV 曝光機<br>3D 互動教材</h1>
+  <p class="sub">
+    NXE / EXE 系列極紫外光曝光機的結構與曝光製程。可旋轉的 3D 模型、可切換的<b>剖面圖</b>與<b>爆炸圖</b>、
+    51 個部件的逐項解說，以及 14 段從錫液滴到掃描曝光的製程流程演示。
+  </p>
+
+  <div class="cta">
+    <a class="btn primary" href="ASML_EUV_3D_Training.html">▶ 開啟教材</a>
+    <a class="btn ghost" href="ASML_EUV_3D_Training.html" download>⬇ 下載離線檔</a>
+    <a class="btn ghost" href="https://github.com/swimmingcap2026-hub/Training_Materials">原始碼</a>
+  </div>
+  <p class="tiny">單一 HTML 檔案，約 780 KB。下載後雙擊即可離線使用，不需網路也不需安裝任何東西。</p>
+
+  <div class="grid">
+    <div class="card"><h3><span class="ico" style="background:rgba(77,208,225,.16);color:#4dd0e1">✂</span>剖面圖</h3>
+      <p>可選 X / Y / Z 切割軸並拖曳切面位置，即時剖開真空腔，看見內部的光學排列與完整 EUV 光路。</p></div>
+    <div class="card"><h3><span class="ico" style="background:rgba(255,217,61,.16);color:#ffd93d">✦</span>爆炸圖</h3>
+      <p>0 到 100% 連續調整分離量，各模組沿設計方向散開，適合說明組裝關係與模組邊界。</p></div>
+    <div class="card"><h3><span class="ico" style="background:rgba(126,231,135,.16);color:#7ee787">◉</span>部件解說</h3>
+      <p>51 個部件，點擊即顯示規格表、功能說明、在製程中的角色與重點觀念。支援中英文搜尋。</p></div>
+    <div class="card"><h3><span class="ico" style="background:rgba(255,138,61,.16);color:#ff8a3d">▶</span>製程演示</h3>
+      <p>14 段流程可自動播放，逐段點亮 EUV 光路，光子粒子沿實際折射路徑流動。</p></div>
+    <div class="card"><h3><span class="ico" style="background:rgba(199,146,234,.16);color:#c792ea">▦</span>機型比較</h3>
+      <p>NXE:3400C / NXE:3600D / NXE:3800E / EXE:5000 (High-NA) 的 NA、曝光場、解析度與產能對照。</p></div>
+    <div class="card"><h3><span class="ico" style="background:rgba(247,120,186,.16);color:#f778ba">?</span>隨堂測驗</h3>
+      <p>10 題觀念題，作答後即時顯示解析，可用於課後驗收。</p></div>
+  </div>
+
+  <div class="sec">
+    <h2>涵蓋範圍</h2>
+    <div class="cov">
+      <div><b>EUV 光源 (LPP)</b>CO₂ 驅動雷射 MO-PA、光束傳輸、最終聚焦模組、錫液滴產生與追蹤、預脈衝與主脈衝、雷射產生電漿、收集鏡、碎屑緩解、中間焦點 IF、氫氣清潔</div>
+      <div><b>照明系統</b>場刻面鏡、瞳刻面鏡、照明光瞳形狀、中繼鏡、REMA 遮蔽刀</div>
+      <div><b>光罩系統</b>反射式光罩（Mo/Si 多層膜 + TaBN 吸收層）、Mask 3D 效應、EUV 護膜、靜電夾具、磁浮光罩台、雙層光罩盒</div>
+      <div><b>投影光學</b>六片非球面反射鏡 M1–M6、NA 0.33、4× 縮小、波前感測與像差主動補償</div>
+      <div><b>晶圓平台</b>靜電吸盤、短行程與長行程、平面馬達磁浮、平衡質量、雙工件台 TWINSCAN</div>
+      <div><b>量測與機構</b>對準、調平與聚焦、劑量控制、三層框架、主動隔振、真空分區抽氣、負載鎖定室、除氣模組</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>操作</h2>
+    <p style="font-size:13px;color:var(--tx2);margin:0 0 12px">
+      左鍵拖曳旋轉，右鍵或 Shift 加拖曳平移，滾輪縮放。點擊任何部件即可看到解說。支援手機與平板的觸控操作。
+    </p>
+    <div class="keys">
+      <kbd>空白</kbd>播放／暫停 <kbd>←</kbd><kbd>→</kbd>切換步驟 <kbd>C</kbd>剖面 <kbd>E</kbd>爆炸
+      <kbd>L</kbd>標籤 <kbd>B</kbd>光路 <kbd>F</kbd>聚焦 <kbd>R</kbd>重設 <kbd>1</kbd>–<kbd>5</kbd>視角
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="note">
+      <p><b>資料來源</b> 技術內容彙整自 ASML、Carl Zeiss SMT、TRUMPF 的公開技術資料與產品規格頁，以及 SPIE 研討會公開論文。</p>
+      <p><b>3D 模型為教學示意</b> 模組相對位置、光路折疊方式與各處角度均經過簡化與放大，並非工程圖或實際尺寸，不含任何機密或專有設計資訊。</p>
+      <p><b>規格數值</b> 為公開資料整理之參考量級，實際規格以 ASML 官方文件為準。本教材與 ASML 無任何隸屬關係，文中商標屬各自所有人。</p>
+    </div>
+  </div>
+
+  <footer>
+    以 <a href="https://threejs.org">three.js</a> r160（MIT License）建構，已內嵌於教材檔案中；3D 幾何全部程序化生成，無任何外部相依。
+  </footer>
+
+</div>
+</body>
+</html>
